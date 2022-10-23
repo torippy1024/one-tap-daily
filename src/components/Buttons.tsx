@@ -1,3 +1,5 @@
+import { UseFormRegister, FieldValues } from "react-hook-form";
+
 export const ButtonColor = {
   red: "bg-red-400 peer-checked:bg-red-900",
   green: "bg-green-400 peer-checked:bg-green-900",
@@ -16,6 +18,7 @@ export type ButtonType = {
 type ButtonsType = {
   buttons: ButtonType[];
   inputName: string;
+  register: UseFormRegister<FieldValues>;
 };
 
 export const randomButtonColor = () => {
@@ -23,12 +26,13 @@ export const randomButtonColor = () => {
   return colorList[Math.floor(Math.random() * colorList.length)];
 }
 
-const Buttons = ({buttons, inputName}: ButtonsType) => {
+const Buttons = ({buttons, inputName, register}: ButtonsType) => {
   return (
     <div className="flex">
       {buttons.map((button, index) => 
         <div key={index}>
           <input
+            {...register(inputName, {required: true})}
             type="radio"
             id={button.text}
             value={button.text}

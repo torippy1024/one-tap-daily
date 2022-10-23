@@ -23,23 +23,28 @@ const TopPage = () => {
 
   const {register, handleSubmit} = useForm();
 
+  const onSubmit = (data: any) => console.log(data);
+
   return  (
       <div data-theme="light" className="flex flex-col min-h-screen">
       <Header />
       <div className="grow container mx-auto my-4 px-4">
-        <div className="mb-4">
-          <div className="text-xl font-bold border-b mb-2">
-            予定
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-4">
+            <div className="text-xl font-bold border-b mb-2">
+              予定
+            </div>
+            <Buttons buttons={scheduleButtons} inputName="schedule" register={register} />
           </div>
-          <Buttons buttons={scheduleButtons} inputName="schedule" />
-        </div>
 
-        <div className="mb-4">
-          <div className="text-xl font-bold border-b mb-2">
-            アクション
+          <div className="mb-4">
+            <div className="text-xl font-bold border-b mb-2">
+              アクション
+            </div>
+            <Buttons buttons={actionButtons} inputName="action" register={register} />
           </div>
-          <Buttons buttons={actionButtons} inputName="action" />
-        </div>
+          <input type="submit" className="btn w-full" />
+        </form>
       </div>
       <Footer />
     </div>
