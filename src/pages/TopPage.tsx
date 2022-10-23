@@ -4,10 +4,16 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 const TopPage = () => {
-  const buttons: ButtonType[] = [
-    {text: "hoge"},
-    {text: "huga"},
+  const scheduleList = [
+    "就寝",
+    "研究室",
+    "アルバイト",
+    "お出かけ",
   ];
+
+  const buttons: ButtonType[] = scheduleList.map((schedule) => {
+    return {text: schedule}
+  });
 
   return  (
       <div data-theme="light" className="flex flex-col min-h-screen">
