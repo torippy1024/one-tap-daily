@@ -4,6 +4,12 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { useForm } from "react-hook-form";
 
+type LogType = {
+  schedule: string;
+  action: string;
+  date: string;
+};
+
 const TopPage = () => {
   const scheduleList = [
     "就寝",
@@ -23,7 +29,16 @@ const TopPage = () => {
 
   const {register, handleSubmit} = useForm();
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => {
+    const log: LogType = {
+      schedule: data.schedule,
+      action: data.action,
+      date: Date()
+    };
+    const storage = localStorage.getItem("otd-log") ?? "[]";
+    const logs = JSON.parse(storage) as LogType[];
+    localStorage.setItem("otd-log", JSON.stringify([...logs, log]));
+  };
 
   return  (
       <div data-theme="light" className="flex flex-col min-h-screen">
