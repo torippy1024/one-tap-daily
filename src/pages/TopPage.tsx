@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Buttons, { ButtonColor, ButtonType } from "../components/Buttons";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { useForm } from "react-hook-form";
 
 const TopPage = () => {
   const scheduleList = [
@@ -15,14 +16,12 @@ const TopPage = () => {
     return {text: schedule};
   });
 
-  const actionList = [
-    "START",
-    "END",
+  const actionButtons: ButtonType[] = [
+    {text: "START", color: ButtonColor.red},
+    {text: "END", color: ButtonColor.blue},
   ];
 
-  const actionButtons: ButtonType[] = actionList.map((action) => {
-    return {text: action};
-  });
+  const {register, handleSubmit} = useForm();
 
   return  (
       <div data-theme="light" className="flex flex-col min-h-screen">
@@ -32,14 +31,14 @@ const TopPage = () => {
           <div className="text-xl font-bold border-b mb-2">
             予定
           </div>
-          <Buttons buttons={scheduleButtons} />
+          <Buttons buttons={scheduleButtons} inputName="schedule" />
         </div>
 
         <div className="mb-4">
           <div className="text-xl font-bold border-b mb-2">
             アクション
           </div>
-          <Buttons buttons={actionButtons} />
+          <Buttons buttons={actionButtons} inputName="action" />
         </div>
       </div>
       <Footer />
