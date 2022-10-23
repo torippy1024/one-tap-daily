@@ -11,15 +11,36 @@ const TopPage = () => {
     "お出かけ",
   ];
 
-  const buttons: ButtonType[] = scheduleList.map((schedule) => {
-    return {text: schedule}
+  const scheduleButtons: ButtonType[] = scheduleList.map((schedule) => {
+    return {text: schedule};
+  });
+
+  const actionList = [
+    "START",
+    "END",
+  ];
+
+  const actionButtons: ButtonType[] = actionList.map((action) => {
+    return {text: action};
   });
 
   return  (
       <div data-theme="light" className="flex flex-col min-h-screen">
       <Header />
       <div className="grow container mx-auto my-4 px-4">
-        <Buttons buttons={buttons} />
+        <div className="mb-4">
+          <div className="text-xl font-bold border-b mb-2">
+            予定
+          </div>
+          <Buttons buttons={scheduleButtons} />
+        </div>
+
+        <div className="mb-4">
+          <div className="text-xl font-bold border-b mb-2">
+            アクション
+          </div>
+          <Buttons buttons={actionButtons} />
+        </div>
       </div>
       <Footer />
     </div>
